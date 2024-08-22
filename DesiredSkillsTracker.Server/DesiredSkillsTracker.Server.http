@@ -1,0 +1,6 @@
+@DesiredSkillsTracker.Server_HostAddress = http://localhost:5227
+
+GET {{DesiredSkillsTracker.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
