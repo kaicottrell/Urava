@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using DesiredSkillsTracker.Server.Documents;
+using Urava.Server.Documents;
 
-namespace DesiredSkillsTracker.Server.Data
+namespace Urava.Server.Data
 {
     public interface IMongoRepository<TDocument> where TDocument : IDocument
     {

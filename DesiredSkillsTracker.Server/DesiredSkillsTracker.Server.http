@@ -1,6 +1,6 @@
-@DesiredSkillsTracker.Server_HostAddress = http://localhost:5227
+@Urava.Server_HostAddress = http://localhost:5227
 
-GET {{DesiredSkillsTracker.Server_HostAddress}}/weatherforecast/
+GET {{Urava.Server_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

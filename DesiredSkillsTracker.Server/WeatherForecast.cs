@@ -1,4 +1,4 @@
-namespace DesiredSkillsTracker.Server
+namespace Urava.Server
 {
     public class WeatherForecast
     {

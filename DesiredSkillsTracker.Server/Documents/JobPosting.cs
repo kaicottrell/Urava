@@ -1,7 +1,7 @@
-﻿using DesiredSkillsTracker.Server.Documents;
+﻿using Urava.Server.Documents;
 using MongoDbGenericRepository.Attributes;
 
-namespace DesiredSkillsTracker.Server.Documents
+namespace Urava.Server.Documents
 {
     /// <summary>
     /// JobPostings hold the information relating to a job posting that was applied for or saved by the user.

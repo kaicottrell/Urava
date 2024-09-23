@@ -1,5 +1,5 @@
-using DesiredSkillsTracker.Server.Data;
-using DesiredSkillsTracker.Server.Documents;
+using Urava.Server.Data;
+using Urava.Server.Documents;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -12,10 +12,10 @@ var mongoDbSettings = mongoDbSConfig.Get<MongoDbSettings>();
 
 builder.Services.Configure<IMongoDbSettings>(mongoDbSConfig);
 
-builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
-    .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
-        mongoDbSettings.ConnectionString, mongoDbSettings.DatabaseName
-    );
+//builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+//    .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
+//        mongoDbSettings.ConnectionString, mongoDbSettings.DatabaseName
+//    );
 
 builder.Services.AddSingleton<IMongoDbSettings>(sp =>
     sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);

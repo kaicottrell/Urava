@@ -1,6 +1,6 @@
 ﻿using MongoDbGenericRepository.Attributes;
 
-namespace DesiredSkillsTracker.Server.Documents
+namespace Urava.Server.Documents
 {
     [CollectionName("Interviews")]
     public class Interview : Document

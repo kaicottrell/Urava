@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 
-namespace DesiredSkillsTracker.Server.Documents
+namespace Urava.Server.Documents
 {
     public abstract class Document : IDocument
     {

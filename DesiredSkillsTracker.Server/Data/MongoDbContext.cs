@@ -1,8 +1,8 @@
 ﻿using MongoDB.Driver;
 
-namespace DesiredSkillsTracker.Server.Data
+namespace Urava.Server.Data
 {
-    public class MongoDbContext
+    public class MongoDbContext : 
     {
         private readonly IMongoDatabase _database;
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace DesiredSkillsTracker.Server.Controllers
+namespace Urava.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]

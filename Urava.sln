@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesiredSkillsTracker.Server", "DesiredSkillsTracker.Server\DesiredSkillsTracker.Server.csproj", "{98818E55-D85F-4A0E-8148-4EE6CD69C3B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Urava.Server", "DesiredSkillsTracker.Server\Urava.Server.csproj", "{98818E55-D85F-4A0E-8148-4EE6CD69C3B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6972C56D-FFD2-464A-8B83-73CE55B3D678} = {6972C56D-FFD2-464A-8B83-73CE55B3D678}
+	EndProjectSection
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "desiredskillstracker.client", "desiredskillstracker.client\desiredskillstracker.client.esproj", "{6972C56D-FFD2-464A-8B83-73CE55B3D678}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Urava.client", "desiredskillstracker.client\Urava.client.esproj", "{6972C56D-FFD2-464A-8B83-73CE55B3D678}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

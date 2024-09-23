@@ -1,10 +1,10 @@
-﻿using DesiredSkillsTracker.Server.Documents;
+﻿using Urava.Server.Documents;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace DesiredSkillsTracker.Server.Data
+namespace Urava.Server.Data
 {
     public class MongoRepository<T> where T : IDocument
     {

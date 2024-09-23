@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace DesiredSkillsTracker.Server.Documents
+namespace Urava.Server.Documents
 {
     public interface IDocument
     {
