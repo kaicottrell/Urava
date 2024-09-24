@@ -1,9 +1,12 @@
 ﻿using MongoDB.Driver;
 using Urava.Server.Interfaces;
-
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Urava.Server.Documents;
 namespace Urava.Server.Repository
 {
-    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : Document
     {
         protected readonly IMongoContext Context;
         protected IMongoCollection<TEntity> DbSet;
@@ -34,7 +37,7 @@ namespace Urava.Server.Repository
 
         public virtual void Update(TEntity obj)
         {
-            Context.AddCommand(() => DbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", obj.GetId()), obj));
+            Context.AddCommand(() => DbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", obj.Id), obj));
         }
 
         public virtual void Remove(Guid id)

@@ -1,5 +1,7 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Hosting;
+using MongoDB.Driver;
 using Urava.Server.Configuration;
+using Urava.Server.Documents;
 using Urava.Server.Interfaces;
 
 namespace Urava.Server.Data
