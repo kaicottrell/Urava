@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Urava.client", "Urava.client\Urava.client.esproj", "{D1FBE566-AA98-4DDD-B21B-9DDEEF94C395}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Urava.Server", "Urava.Server\Urava.Server.csproj", "{48C000CF-F878-4B47-805D-748BA6C83212}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1FBE566-AA98-4DDD-B21B-9DDEEF94C395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1FBE566-AA98-4DDD-B21B-9DDEEF94C395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1FBE566-AA98-4DDD-B21B-9DDEEF94C395}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D1FBE566-AA98-4DDD-B21B-9DDEEF94C395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1FBE566-AA98-4DDD-B21B-9DDEEF94C395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1FBE566-AA98-4DDD-B21B-9DDEEF94C395}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{48C000CF-F878-4B47-805D-748BA6C83212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C000CF-F878-4B47-805D-748BA6C83212}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C000CF-F878-4B47-805D-748BA6C83212}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C000CF-F878-4B47-805D-748BA6C83212}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B83EDA8-B574-4262-BF08-4140A52EDBAA}
+	EndGlobalSection
+EndGlobal
