@@ -1,9 +1,13 @@
+import React from 'react';
+import JobPostings from './JobPostings.tsx';
 
-function Home () {
+function Home() {
     return (
-       <div>Test</div>
+        <div>
+            <h1>Home</h1>
+            <JobPostings />
+        </div>
     );
-};
-
+}
 
 export default Home;

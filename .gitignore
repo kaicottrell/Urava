@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /DesiredSkillsTracker.Server/appsettings.Development.json
 /DesiredSkillsTracker.Server/appsettings.Development.json
+/Urava.Server/appsettings.Development.json

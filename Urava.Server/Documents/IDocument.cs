@@ -6,8 +6,8 @@ namespace Urava.Server.Documents
     public interface IDocument
     {
         [BsonId]
-        [BsonRepresentation(BsonType.String)]
-        ObjectId Id { get; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        string _id { get; }
         DateTime CreatedAt { get; }
         int Version { get; }    
     }

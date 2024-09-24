@@ -5,7 +5,6 @@ import Home from './components/Home.tsx';
 function App() {  // Destructure and set a default value
     return (
         <div>
-            <p>Test</p>
             <Home/>
         </div>
     );

@@ -9,6 +9,7 @@ namespace Urava.Server.Documents
     [CollectionName("JobPostings")]
     public class JobPosting : Document
     {
+
         public string Title { get; set; } = String.Empty;
         public string Description { get; set; } = String.Empty;
         public string Company { get; set; } = String.Empty;

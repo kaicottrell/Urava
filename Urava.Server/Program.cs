@@ -4,7 +4,7 @@ using Urava.Server.Interfaces;
 using Urava.Server.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using MongoDB.GenericRepository.UoW;
+using Urava.Server.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +15,7 @@ var mongoDbSettings = mongoDbSConfig.Get<MongoDbSettings>();
 
 builder.Services.AddSingleton<IMongoDbSettings>(mongoDbSettings);
 builder.Services.AddScoped<IMongoContext, MongoContext>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 //builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
 //    .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
