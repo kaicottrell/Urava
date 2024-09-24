@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace MongoDB.GenericRepository.Interfaces
+namespace Urava.Server.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

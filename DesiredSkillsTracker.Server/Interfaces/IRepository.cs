@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MongoDB.GenericRepository.Interfaces
+namespace Urava.Server.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : class
     {

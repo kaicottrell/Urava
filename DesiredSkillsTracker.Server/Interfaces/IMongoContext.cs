@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace MongoDB.GenericRepository.Interfaces
+namespace Urava.Server.Interfaces
 {
     public interface IMongoContext : IDisposable
     {
