@@ -7,7 +7,7 @@ namespace Urava.Server.Documents
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        string _id { get; }
+        ObjectId _id { get; }
         DateTime CreatedAt { get; }
         int Version { get; }    
     }

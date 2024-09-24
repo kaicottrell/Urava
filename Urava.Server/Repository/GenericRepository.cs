@@ -24,7 +24,7 @@ namespace Urava.Server.Repository
             Context.AddCommand(() => DbSet.InsertOneAsync(obj));
         }
 
-        public virtual async Task<TEntity> GetById(string id)
+        public virtual async Task<TEntity> GetById(ObjectId id)
         {
             var data = await DbSet.FindAsync(Builders<TEntity>.Filter.Eq("_id", id));
             return data.SingleOrDefault();
@@ -41,7 +41,7 @@ namespace Urava.Server.Repository
             Context.AddCommand(() => DbSet.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", obj._id), obj));
         }
 
-        public virtual void Remove(string id)
+        public virtual void Remove(ObjectId id)
         {
             Context.AddCommand(() => DbSet.DeleteOneAsync(Builders<TEntity>.Filter.Eq("_id", id)));
         }
