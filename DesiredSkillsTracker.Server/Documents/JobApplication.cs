@@ -1,4 +1,5 @@
-﻿using MongoDbGenericRepository.Attributes;
+﻿using MongoDB.Bson;
+using MongoDbGenericRepository.Attributes;
 
 namespace Urava.Server.Documents
 {
@@ -6,7 +7,10 @@ namespace Urava.Server.Documents
     public class JobApplication : Document
     {
         public DateTime DateApplied { get; set; } = DateTime.UtcNow;
-        public JobPosting JobPosting { get; set; } = new JobPosting();
+        /// <summary>
+        /// Reference to JobPostingId
+        /// </summary>
+        public ObjectId JobPostingId { get; set; }
         public string? Notes { get; set; }
     }
 }
