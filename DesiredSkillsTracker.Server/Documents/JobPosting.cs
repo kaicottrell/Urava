@@ -16,7 +16,11 @@ namespace Urava.Server.Documents
         public DateTime PostedDate { get; set; } = DateTime.UtcNow;
         public string? PostingURL { get; set; }
         public int? YearsOfExperience { get; set; }
-        public string Type { get; set; } = "Full-time";
+        public JobType Type { get; set; } = JobType.FullTime;
         public string[] Skills { get; set; } = Array.Empty<string>();
+    }
+    public enum JobType
+    {
+        FullTime, PartTime, Contract, Internship
     }
 }
