@@ -19,7 +19,7 @@ namespace Urava.Server.Controllers
 
         // Create a new job posting
         [HttpPost]
-        public  IActionResult CreateJobPosting([FromBody] JobPosting jobPosting)
+        public IActionResult CreateJobPosting([FromBody] JobPosting jobPosting)
         {
             if (jobPosting == null)
             {
@@ -27,13 +27,14 @@ namespace Urava.Server.Controllers
             }
 
             _jobPostingRepo.Add(jobPosting);
+            _jobPostingRepo.SaveChanges();
 
             return CreatedAtAction(nameof(GetJobPostingById), new { id = jobPosting._id }, jobPosting);
         }
 
         // Get a job posting by ID
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetJobPostingById(string id)
+        [HttpGet]
+        public async Task<IActionResult> GetJobPostingById(ObjectId id)
         {
             var jobPosting = await _jobPostingRepo.GetById(id);
 
@@ -44,7 +45,13 @@ namespace Urava.Server.Controllers
 
             return Ok(jobPosting);
         }
-
+        // Get all job postings
+        [HttpGet("GetAllJobPostings")]
+        public async Task<IActionResult> GetAllJobPostings()
+        {
+            var jobPostings = await _jobPostingRepo.GetAll();
+            return Ok(jobPostings.ToArray());
+        }
 
         // Update an existing job posting
         [HttpPut]
@@ -76,13 +83,13 @@ namespace Urava.Server.Controllers
             }
 
 
-            var jobPosting = _jobPostingRepo.GetById(id);
+            var jobPosting = _jobPostingRepo.GetById(objectId);
             if (jobPosting == null)
             {
                 return NotFound();
             }
 
-            _jobPostingRepo.Remove(id);
+            _jobPostingRepo.Remove(objectId);
 
             return NoContent();
         }
