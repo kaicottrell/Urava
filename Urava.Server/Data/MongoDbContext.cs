@@ -6,6 +6,7 @@ using Urava.Server.Interfaces;
 
 namespace Urava.Server.Data
 {
+    //example comment
     public class MongoContext : IMongoContext
     {
         private IMongoDatabase Database { get; set; }
