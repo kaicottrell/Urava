@@ -12,6 +12,7 @@ namespace Urava.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class JobPostingController : ControllerBase
     {
         private readonly IRepository<JobPosting> _jobPostingRepo;
@@ -59,12 +60,21 @@ namespace Urava.Server.Controllers
 
             return Ok(jobPosting);
         }
-        // Get all job postings
+        // Get all job postings associated with the logged-in user
         [HttpGet("GetAllJobPostings")]
         public async Task<IActionResult> GetAllJobPostings()
         {
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                return Unauthorized("User is not logged in.");
+            }
+
+            var objectId = new ObjectId(userId);
             var jobPostings = await _jobPostingRepo.GetAll();
-            return Ok(jobPostings.ToArray());
+            var userJobPostings = jobPostings.Where(jp => jp.UserId == objectId).ToArray();
+
+            return Ok(userJobPostings);
         }
 
         // Update an existing job posting
