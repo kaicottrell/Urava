@@ -4,7 +4,7 @@ using MongoDbGenericRepository.Attributes;
 
 namespace Urava.Server.Documents
 {
-    [CollectionName("Users")]
+  //  [CollectionName("Users")]
     public class ApplicationUser : MongoIdentityUser<Guid>
     {
         public string FirstName { get; set; } = string.Empty;

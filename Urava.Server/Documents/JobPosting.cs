@@ -6,7 +6,7 @@ namespace Urava.Server.Documents
     /// <summary>
     /// JobPostings hold the information relating to a job posting that was applied for or saved by the user.
     /// </summary>
-    [CollectionName("JobPostings")]
+ //   [CollectionName("JobPostings")]
     public class JobPosting : Document
     {
         public string Title { get; set; } = String.Empty;
