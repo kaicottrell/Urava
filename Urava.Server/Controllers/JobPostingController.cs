@@ -3,6 +3,10 @@ using MongoDB.Bson;
 using Urava.Server.Documents;
 using Urava.Server.Interfaces;
 using Urava.Server.Repository;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Urava.Server.Controllers
 {
@@ -11,10 +15,12 @@ namespace Urava.Server.Controllers
     public class JobPostingController : ControllerBase
     {
         private readonly IRepository<JobPosting> _jobPostingRepo;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public JobPostingController(IRepository<JobPosting> jobPostingRepo)
+        public JobPostingController(IRepository<JobPosting> jobPostingRepo, UserManager<ApplicationUser> userManager)
         {
             _jobPostingRepo = jobPostingRepo;
+            _userManager = userManager;
         }
 
         // Create a new job posting
@@ -25,6 +31,14 @@ namespace Urava.Server.Controllers
             {
                 return BadRequest("Job posting is null.");
             }
+
+            //var userId = _userManager.GetUserId(User);
+            //if (userId == null)
+            //{
+            //    return Unauthorized("User is not logged in.");
+            //}
+            //jobPosting.UserId = new ObjectId(userId);
+            jobPosting.UserId = ObjectId.GenerateNewId();
 
             _jobPostingRepo.Add(jobPosting);
             _jobPostingRepo.SaveChanges();
