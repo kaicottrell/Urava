@@ -3,7 +3,7 @@ using MongoDbGenericRepository.Attributes;
 
 namespace Urava.Server.Documents
 {
-    [CollectionName("Roles")]
+  //  [CollectionName("Roles")]
     public class ApplicationRole : MongoIdentityRole<Guid>
     {
     }
