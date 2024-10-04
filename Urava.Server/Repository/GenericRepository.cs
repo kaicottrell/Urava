@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Urava.Server.Documents;
+using MongoDbGenericRepository.Attributes;
 namespace Urava.Server.Repository
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : Document
@@ -16,8 +17,19 @@ namespace Urava.Server.Repository
         {
             Context = context;
 
-            DbSet = Context.GetCollection<TEntity>(typeof(TEntity).Name);
+            var collectionName = GetCollectionName(typeof(TEntity));
+            DbSet = Context.GetCollection<TEntity>(collectionName);
         }
+
+        private string GetCollectionName(Type documentType)
+        {
+            var attribute = (CollectionNameAttribute)documentType
+                .GetCustomAttributes(typeof(CollectionNameAttribute), true)
+                .FirstOrDefault();
+
+            return attribute?.Name ?? documentType.Name;
+        }
+
 
         public virtual void Add(TEntity obj)
         {

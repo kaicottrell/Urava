@@ -3,7 +3,7 @@ using MongoDbGenericRepository.Attributes;
 
 namespace Urava.Server.Documents
 {
-   // [CollectionName("Interviews")]
+    [CollectionName("Interviews")]
     public class Interview : Document
     {
         public DateTime DateTimeStart { get; set; }

@@ -5,6 +5,8 @@ using Urava.Server.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Urava.Server.Repository;
+using MongoDB.Bson;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +19,10 @@ builder.Services.AddSingleton<IMongoDbSettings>(mongoDbSettings);
 builder.Services.AddScoped<IMongoContext, MongoContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
-//builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
-//    .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
-//        mongoDbSettings.ConnectionString, mongoDbSettings.DatabaseName
-//    );
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+    .AddMongoDbStores<ApplicationUser, ApplicationRole, ObjectId>(
+        mongoDbSettings.ConnectionString, mongoDbSettings.DatabaseName
+    );
 
 
 

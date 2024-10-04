@@ -3,7 +3,7 @@ using MongoDbGenericRepository.Attributes;
 
 namespace Urava.Server.Documents
 {
-   // [CollectionName("JobApplications")]
+    [CollectionName("JobApplications")]
     public class JobApplication : Document
     {
         public DateTime DateApplied { get; set; } = DateTime.UtcNow;
