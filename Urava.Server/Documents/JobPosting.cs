@@ -9,15 +9,17 @@ namespace Urava.Server.Documents
     [CollectionName("JobPostings")]
     public class JobPosting : Document
     {
-        public string Title { get; set; } = String.Empty;
-        public string Description { get; set; } = String.Empty;
-        public string Company { get; set; } = String.Empty;
+        public string JobTitle { get; set; } = "No Job Title Found";
+        public string Description { get; set; } ="No Description Found";
+        public string Company { get; set; } = "No Company Found";
         public string? Location { get; set; }
         public DateTime PostedDate { get; set; } = DateTime.UtcNow;
         public string? PostingURL { get; set; }
         public int? YearsOfExperience { get; set; }
         public JobType Type { get; set; } = JobType.FullTime;
         public string[] Skills { get; set; } = Array.Empty<string>();
+        // TODO: Add association with a user
+
     }
     public enum JobType
     {
