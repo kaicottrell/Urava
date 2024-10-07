@@ -42,6 +42,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Add middleware to handle unauthorized requests (error code 401 [unauthorized])
+app.UseStatusCodePages(async context =>
+{
+    if (context.HttpContext.Response.StatusCode == 401)
+    {
+        context.HttpContext.Response.Redirect("/Account/Login");
+    }
+});
+
 // some comments
 app.UseHttpsRedirection();
 app.UseAuthentication();
