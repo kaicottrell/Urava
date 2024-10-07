@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Urava.Server.Repository;
 using MongoDB.Bson;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 var mongoDbSConfig = builder.Configuration.GetSection(nameof(MongoDbSettings));
 var mongoDbSettings = mongoDbSConfig.Get<MongoDbSettings>();
 
+
 builder.Services.AddSingleton<IMongoDbSettings>(mongoDbSettings);
 builder.Services.AddScoped<IMongoContext, MongoContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
@@ -22,7 +25,8 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
     .AddMongoDbStores<ApplicationUser, ApplicationRole, ObjectId>(
         mongoDbSettings.ConnectionString, mongoDbSettings.DatabaseName
-    );
+    )
+    .AddApiEndpoints();
 
 
 
@@ -52,11 +56,21 @@ app.UseStatusCodePages(async context =>
     }
 });
 
+app.MapPost("/logout", async (SignInManager<ApplicationUser> signInManger) =>
+{
+    await signInManger.SignOutAsync();
+    return Results.Ok();
+});
+
+app.MapGet("pingauth", (ClaimsPrincipal user) =>
+{
+    var email = user.FindFirstValue(ClaimTypes.Email);
+    return Results.Json(new { Email = email });
+}).RequireAuthorization();
+
 // some comments
 app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-
+app.MapIdentityApi<ApplicationUser>();
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");

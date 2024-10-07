@@ -8,6 +8,7 @@ namespace Urava.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Obsolete("Use the prebuilt API endpoints by identity")]
     public class UserController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
