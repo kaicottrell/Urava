@@ -70,7 +70,7 @@ function Login() {
     };
 
     return (
-        <div className="containerbox">
+        <div className="containerbox text-center bg-primary">
             <h3>Login</h3>
             <form onSubmit={handleSubmit}>
                 <div>
