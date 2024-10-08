@@ -1,0 +1,35 @@
+
+
+// Override Bootstrap variables
+$primary: #F5EDED;
+$secondary: #7FA1C3;
+
+// Image Logo
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+.containerbox {
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px gray;
+    background-color: white;
+    padding: 20px;
+    text-align: left;
+}
+
+#profile-actions-dropdown {
+    position: fixed;
+    top: 10px ; /* Adjust as needed */
+    right: 10px ; /* Adjust as needed */
+    z-index: 1000 ; /* Ensure it is above other elements */
+}
+// Define the grow animation
+
+.fixed-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+@import 'bootstrap/scss/bootstrap.scss';

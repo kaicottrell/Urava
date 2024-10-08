@@ -1,13 +1,20 @@
-import { useEffect, useState } from 'react';
-import './css/App.css';
-import './components/Home.tsx'
-import Home from './components/Home.tsx';
-function App() {  // Destructure and set a default value
-    return (
-        <div>
-            <Home/>
-        </div>
-    );
-}
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home.tsx';
+import Login from './Pages/Identity/Login.tsx';
+import Register from './Pages/Identity/Register.tsx';
+
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </BrowserRouter>
+    );
+
+}
 export default App;
