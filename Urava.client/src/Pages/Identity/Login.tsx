@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Container } from "react-bootstrap";
 function Login() {
     // state variables for email and passwords
     const [email, setEmail] = useState<string>("");
@@ -70,50 +70,53 @@ function Login() {
     };
 
     return (
-        <div className="containerbox text-center bg-primary">
-            <h3>Login</h3>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label className="forminput" htmlFor="email">Email:</label>
-                </div>
-                <div>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                </div>
-                <div>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="checkbox"
-                        id="rememberme"
-                        name="rememberme"
-                        checked={rememberme}
-                        onChange={handleChange} /><span>Remember Me</span>
-                </div>
-                <div>
-                    <button type="submit">Login</button>
-                </div>
-                <div>
-                    <button onClick={handleRegisterClick}>Register</button>
-                </div>
-            </form>
-            {error && <p className="error">{error}</p>}
+        <div className ="vh-100 d-flex justify-content-center align-items-center">
+            <Container className="w-50 containerbox text-center bg-primary">
+                <h3>Login</h3>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label className="forminput" htmlFor="email">Email:</label>
+                    </div>
+                    <div>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password:</label>
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="rememberme"
+                            name="rememberme"
+                            checked={rememberme}
+                            onChange={handleChange} /><span>Remember Me</span>
+                    </div>
+                    <div>
+                        <button type="submit">Login</button>
+                    </div>
+                    <div>
+                        <button onClick={handleRegisterClick}>Register</button>
+                    </div>
+                </form>
+                {error && <p className="error">{error}</p>}
+            </Container>
         </div>
+
     );
 }
 
