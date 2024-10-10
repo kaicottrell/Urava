@@ -31,5 +31,8 @@ $secondary: #7FA1C3;
     top: 50%;
     left: 50%;
 }
-
+.custom-checkbox .form-check-input:checked {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+}
 @import 'bootstrap/scss/bootstrap.scss';

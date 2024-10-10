@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Logo from '/assets/images/LogoV1.png';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function Login() {
     // state variables for email and passwords
@@ -79,54 +81,64 @@ function Login() {
 
             <Row className="d-flex justify-content-center my-4">
                 <Col className="text-center" xs="auto" >
-                    <Image className="w-50 " src={Logo} />
+                    <Image className="w-50" src={Logo} />
                 </Col>
             </Row>
 
-            <Row>
-                <Col>
-                    <Container className="w-50 containerbox text-center bg-primary">
-                        <h3>Login</h3>
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                <label className="forminput" htmlFor="email">Email:</label>
-                            </div>
-                            <div>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={email}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="password">Password:</label>
-                            </div>
-                            <div>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    value={password}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div>
-                                <input
+            <Row className="d-flex justify-content-center">
+                <Col xs={12} md={6} lg={4} xl={3}>
+                    <Container className="w-100 containerbox bg-primary">
+                        <h3 className="text-center">Login</h3>
+                        <Form onSubmit={handleSubmit}>
+                            <Row>
+                                <Col xs={12} sm={6} md={12}>
+                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                        <Form.Label className="forminput" htmlFor="email">Email:</Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            value={email}
+                                            onChange={handleChange}
+                                        />
+                                    </Form.Group>
+                                </Col>
+
+                                <Col xs={12} sm={6} md={12}>
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Label htmlFor="password">Password:</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            id="password"
+                                            name="password"
+                                            value={password}
+                                            onChange={handleChange}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                             
+
+
+
+                            <Form.Group className="mb-3 custom-checkbox d-flex justify-content-center" controlId="formBasicPassword">
+                                <Form.Check
+                                    className="me-2"
                                     type="checkbox"
                                     id="rememberme"
                                     name="rememberme"
                                     checked={rememberme}
-                                    onChange={handleChange} /><span>Remember Me</span>
+                                    onChange={handleChange}
+                                />
+                                <span>Remember Me</span>
+                            </Form.Group>
+
+                            <div className="text-center">
+                                <Button className="me-2" variant="secondary" type="submit">Login</Button>
+                                <Button className="ms-2" variant="outline-dark" type="button" onClick={handleRegisterClick}>Register</Button>
                             </div>
-                            <div>
-                                <button type="submit">Login</button>
-                            </div>
-                            <div>
-                                <button onClick={handleRegisterClick}>Register</button>
-                            </div>
-                        </form>
+                           
+                        </Form>
                         {error && <p className="error">{error}</p>}
                     </Container>
                 </Col>
