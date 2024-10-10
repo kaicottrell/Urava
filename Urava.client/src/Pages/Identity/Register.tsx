@@ -59,7 +59,7 @@ function Register() {
             // clear error message
             setError("");
             // post data to the /register api
-            fetch("/register", {
+            fetch("/api/account/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -103,9 +103,10 @@ function Register() {
                         <Form onSubmit={handleSubmit}>
                             <Row>
                                 <Col s={12} md={6}>
-                                    <Form.Group className="mb-3" controlId="firstName">
-                                        <Form.Label htmlFor="firstName">First Name:</Form.Label>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label className="font-md fw-bold" htmlFor="firstName">First Name:</Form.Label>
                                         <Form.Control
+                                            className="form-control-default"
                                             type="text"
                                             id="firstName"
                                             name="firstName"
@@ -115,9 +116,10 @@ function Register() {
                                     </Form.Group>
                                 </Col>
                                 <Col s={12} md={6}>
-                                    <Form.Group className="mb-3" controlId="lastName">
-                                        <Form.Label htmlFor="lastName">Last Name:</Form.Label>
+                                    <Form.Group className="mb-3" >
+                                        <Form.Label className="font-md fw-bold" htmlFor="lastName">Last Name:</Form.Label>
                                         <Form.Control
+                                            className="form-control-default"
                                             type="text"
                                             id="lastName"
                                             name="lastName"
@@ -126,9 +128,10 @@ function Register() {
                                         />
                                     </Form.Group>
                                 </Col>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label htmlFor="email">Email:</Form.Label>
+                                <Form.Group className="mb-3" >
+                                    <Form.Label className="font-md fw-bold" htmlFor="email">Email:</Form.Label>
                                     <Form.Control
+                                        className="form-control-default"
                                         type="email"
                                         id="email"
                                         name="email"
@@ -137,9 +140,10 @@ function Register() {
                                     />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label htmlFor="password">Password:</Form.Label>
+                                <Form.Group className="mb-3" >
+                                    <Form.Label className="font-md fw-bold" htmlFor="password">Password:</Form.Label>
                                     <Form.Control
+                                        className="form-control-default"
                                         type="password"
                                         id="password"
                                         name="password"
@@ -148,9 +152,10 @@ function Register() {
                                     />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label htmlFor="confirmPassword">Confirm Password:</Form.Label>
+                                <Form.Group className="mb-3" >
+                                    <Form.Label className="font-md fw-bold" htmlFor="confirmPassword">Confirm Password:</Form.Label>
                                     <Form.Control
+                                        className="form-control-default"
                                         type="password"
                                         id="confirmPassword"
                                         name="confirmPassword"
@@ -160,12 +165,12 @@ function Register() {
                                 </Form.Group>
                             </Row>
                             <div className="text-center">
-                                <Button className="me-2" variant="secondary" type="submit">Register</Button>
-                                <Button className="ms-2" variant="outline-dark" onClick={handleLoginClick}>Go to Login</Button>
+                                <Button className="me-2 font-md" variant="secondary" type="submit">Register</Button>
+                                <Button className="ms-2 font-md" variant="outline-dark" onClick={handleLoginClick}>Go to Login</Button>
                             </div>
                         </Form>
 
-                        {error && <p className="error text-center text-danger mt-3">{error}</p>}
+                        {error && <p className="error text-center text-danger font-md mt-3">{error}</p>}
 
                     </Container>
                 </Col>
