@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import UravaLogo from '../assets/images/LogoV1.png';
+import UravaLogo from '/assets/images/LogoV1.png';
 import Image from 'react-bootstrap/Image';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';

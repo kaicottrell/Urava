@@ -1,6 +1,6 @@
 import { Dropdown, Image } from 'react-bootstrap';
 import LogoutLink from './Authorization/LogoutLink.tsx';
-import DefaultUserIcon from '../assets/images/DefaultUserIcon.png';
+import DefaultUserIcon from '/assets/images/DefaultUserIcon.png';
 
 function ProfileActions() {
     return (
