@@ -61,7 +61,6 @@ function Login() {
                     // handle success or error from the server
                     console.log(data);
                     if (data.ok) {
-                        setError("Successful Login.");
                         window.location.href = '/';
                     }
                     else
@@ -133,8 +132,8 @@ function Login() {
                             </Form.Group>
 
                             <div className="text-center">
-                                <Button className="me-2 font-sm" variant="secondary" type="submit">Login</Button>
-                                <Button className="ms-2 font-sm" variant="outline-dark" type="button" onClick={handleRegisterClick}>Register</Button>
+                                <Button className="me-2 font-md" variant="secondary" type="submit">Login</Button>
+                                <Button className="ms-2 font-md" variant="outline-dark" type="button" onClick={handleRegisterClick}>Register</Button>
                             </div>
                            
                         </Form>
