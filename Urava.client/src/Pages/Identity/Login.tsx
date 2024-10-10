@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-import Logo from '/assets/images/LogoV1.png';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -80,7 +79,7 @@ function Login() {
 
             <Row className="d-flex justify-content-center my-4">
                 <Col className="text-center" xs="auto" >
-                    <Image className="w-50" src={Logo} />
+                    <Image className="w-50" src="/assets/images/LogoV1.png" alt="Logo" />
                 </Col>
             </Row>
 
@@ -133,7 +132,7 @@ function Login() {
 
                             <div className="text-center">
                                 <Button className="me-2 font-md" variant="secondary" type="submit">Login</Button>
-                                <Button className="ms-2 font-md" variant="outline-dark" type="button" onClick={handleRegisterClick}>Register</Button>
+                                <Button className="ms-2 font-md" variant="outline-dark" type="button" onClick={handleRegisterClick}>New Here? Register</Button>
                             </div>
                            
                         </Form>
