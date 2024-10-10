@@ -7,6 +7,9 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
     const navigate = useNavigate();
 
     // state variable for error messages
@@ -23,16 +26,24 @@ function Register() {
         if (name === "email") setEmail(value);
         if (name === "password") setPassword(value);
         if (name === "confirmPassword") setConfirmPassword(value);
+        if (name === "firstName") setFirstName(value);
+        if (name === "lastName") setLastName(value);
     };
 
     // handle submit event for the form
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // validate email and passwords
-        if (!email || !password || !confirmPassword) {
-            setError("Please fill in all fields.");
+        if (!firstName) {
+            setError("First name is required.");
+        } else if (!lastName) {
+            setError("Last name is required.");
+        } else if (!email) {
+            setError("Email is required.");
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             setError("Please enter a valid email address.");
+        } else if (!password) {
+            setError("Password is required.");
         } else if (password !== confirmPassword) {
             setError("Passwords do not match.");
         } else {
@@ -47,9 +58,10 @@ function Register() {
                 body: JSON.stringify({
                     email: email,
                     password: password,
+                    firstName: firstName,
+                    lastName: lastName,
                 }),
             })
-                //.then((response) => response.json())
                 .then((data) => {
                     // handle success or error from the server
                     console.log(data);
@@ -57,7 +69,6 @@ function Register() {
                         setError("Successful register.");
                     else
                         setError("Error registering.");
-
                 })
                 .catch((error) => {
                     // handle network error
@@ -66,6 +77,7 @@ function Register() {
                 });
         }
     };
+
 
     return (
         <div className="containerbox">
