@@ -25,7 +25,7 @@ namespace Urava.Server.Controllers
         }
 
         // Create a new job posting
-        [HttpPost]
+        [HttpPost("CreateJobPosting")]
         public IActionResult CreateJobPosting([FromBody] JobPosting jobPosting)
         {
             if (jobPosting == null)
@@ -48,7 +48,7 @@ namespace Urava.Server.Controllers
         }
 
         // Get a job posting by ID
-        [HttpGet]
+        [HttpGet("JobPostingById")]
         public async Task<IActionResult> GetJobPostingById(ObjectId id)
         {
             var jobPosting = await _jobPostingRepo.GetById(id);
@@ -61,7 +61,7 @@ namespace Urava.Server.Controllers
             return Ok(jobPosting);
         }
         // Get all job postings associated with the logged-in user
-        [HttpGet("GetAllJobPostings")]
+        [HttpGet("AllJobPostings")]
         public async Task<IActionResult> GetAllJobPostings()
         {
             var userId = _userManager.GetUserId(User);
@@ -70,15 +70,15 @@ namespace Urava.Server.Controllers
                 return Unauthorized("User is not logged in.");
             }
 
-            var objectId = new ObjectId(userId);
+            var userObjectId = new ObjectId(userId);
             var jobPostings = await _jobPostingRepo.GetAll();
-            var userJobPostings = jobPostings.Where(jp => jp.UserId == objectId).ToArray();
+            var userJobPostings = jobPostings.Where(jp => jp.UserId == userObjectId).ToArray();
 
             return Ok(userJobPostings);
         }
 
         // Update an existing job posting
-        [HttpPut]
+        [HttpPut("UpdateJobPosting")]
         public  IActionResult UpdateJobPosting([FromBody] JobPosting jobPosting)
         {
             if (jobPosting == null)
