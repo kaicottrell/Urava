@@ -77,9 +77,9 @@ function Login() {
     return (
         <div className="">
 
-            <Row className="d-flex justify-content-center my-4">
+            <Row className="d-flex justify-content-center mt-2">
                 <Col className="text-center" xs="auto" >
-                    <Image className="w-50" src="/assets/images/LogoV1.png" alt="Logo" />
+                    <Image className="w-25" src="/assets/images/LogoV2.png" alt="Logo" />
                 </Col>
             </Row>
 
