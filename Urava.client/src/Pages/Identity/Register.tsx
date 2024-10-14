@@ -6,10 +6,8 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
-
-
-
+import { useToast } from '../../Context/ToastContext';
+import { toast } from 'react-toastify';
 function Register() {
     // state variables for email and passwords
     const [email, setEmail] = useState("");
@@ -19,14 +17,14 @@ function Register() {
     const [lastName, setLastName] = useState("");
 
     const navigate = useNavigate();
-
+    //toast
+    const { triggerToast } = useToast();
     // state variable for error messages
     const [error, setError] = useState("");
 
     const handleLoginClick = () => {
         navigate("/login");
     }
-
 
     // handle change events for input fields
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,10 +71,15 @@ function Register() {
                 .then((data) => {
                     // handle success or error from the server
                     console.log(data);
-                    if (data.ok)
-                        setError("Successful register.");
-                    else
+                    if (data.ok) {
+                        triggerToast("Registration Successful, Please Log In");
+                        navigate("/login");
+                    }
+                    else {
+                        toast.error('Error registering');
                         setError("Error registering.");
+                    }
+                        
                 })
                 .catch((error) => {
                     // handle network error
@@ -88,7 +91,7 @@ function Register() {
 
 
     return (
-        <div className="">
+        <>
             <Row className="d-flex justify-content-center mt-2">
                 <Col className="text-center" xs="auto" >
                     <Image className="w-25" src="/assets/images/LogoV2.png" alt="Logo" />
@@ -174,7 +177,7 @@ function Register() {
                     </Container>
                 </Col>
             </Row>
-        </div>
+        </>
     );
 }
 

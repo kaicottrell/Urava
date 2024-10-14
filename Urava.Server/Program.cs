@@ -47,15 +47,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Add middleware to handle unauthorized requests (error code 401 [unauthorized])
-app.UseStatusCodePages(async context =>
-{
-    if (context.HttpContext.Response.StatusCode == 401)
-    {
-        context.HttpContext.Response.Redirect("/Account/Login");
-    }
-});
-
 app.MapPost("/logout", async (SignInManager<ApplicationUser> signInManger) =>
 {
     await signInManger.SignOutAsync();
@@ -65,6 +56,10 @@ app.MapPost("/logout", async (SignInManager<ApplicationUser> signInManger) =>
 app.MapGet("pingauth", (ClaimsPrincipal user) =>
 {
     var email = user.FindFirstValue(ClaimTypes.Email);
+    if (email == null)
+    {
+        return Results.Unauthorized();
+    }
     return Results.Json(new { Email = email });
 }).RequireAuthorization();
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Col from 'react-bootstrap/Col';
@@ -6,6 +6,8 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useToast } from '../../Context/ToastContext';
+import { toast } from "react-toastify";
 
 function Login() {
     // state variables for email and passwords
@@ -15,6 +17,8 @@ function Login() {
     // state variable for error messages
     const [error, setError] = useState<string>("");
     const navigate = useNavigate();
+    // Destructuring the triggerToast function from the useToast context
+    const { triggerToast } = useToast();
 
     // handle change events for input fields
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,10 +64,13 @@ function Login() {
                     // handle success or error from the server
                     console.log(data);
                     if (data.ok) {
-                        window.location.href = '/';
+                        triggerToast("Login Successful");
+                        navigate("/");
                     }
-                    else
-                        setError("Error Logging In.");
+                    else {
+                        toast.error("Email or password failed");
+                    }
+                       
 
                 })
                 .catch((error) => {
@@ -74,9 +81,10 @@ function Login() {
         }
     };
 
-    return (
-        <div className="">
+  
 
+    return (
+        <>
             <Row className="d-flex justify-content-center mt-2">
                 <Col className="text-center" xs="auto" >
                     <Image className="w-25" src="/assets/images/LogoV2.png" alt="Logo" />
@@ -90,7 +98,7 @@ function Login() {
                         <Form onSubmit={handleSubmit}>
                             <Row>
                                 <Col xs={12} sm={6} md={12}>
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Group className="mb-3">
                                         <Form.Label className="font-md fw-bold" htmlFor="email">Email:</Form.Label>
                                         <Form.Control
                                             className="form-control-default"
@@ -104,7 +112,7 @@ function Login() {
                                 </Col>
 
                                 <Col xs={12} sm={6} md={12}>
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Group className="mb-3">
                                         <Form.Label className="font-md fw-bold" htmlFor="password">Password:</Form.Label>
                                         <Form.Control
                                             className="form-control-default"
@@ -118,7 +126,7 @@ function Login() {
                                 </Col>
                             </Row>
 
-                            <Form.Group className="mb-3 custom-checkbox d-flex justify-content-center align-items-center" controlId="formBasicPassword">
+                            <Form.Group className="mb-3 custom-checkbox d-flex justify-content-center align-items-center" >
                                 <Form.Check
                                     className="me-2"
                                     type="checkbox"
@@ -141,8 +149,7 @@ function Login() {
                 </Col>
 
             </Row>
-
-        </div>
+        </>
 
     );
 }
