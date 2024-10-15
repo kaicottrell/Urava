@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Urava.Server.Documents
 {
+    [CollectionName("References")]
     public class Reference : Document
     {
         [JsonIgnore]

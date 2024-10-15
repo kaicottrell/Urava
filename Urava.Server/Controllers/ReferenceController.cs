@@ -27,7 +27,7 @@ namespace Urava.Server.Controllers
         /// <param name="reference"></param>
         /// <returns></returns>
         /// 
-        [HttpPost]
+        [HttpPost("AddReference")]
         public IActionResult AddReference([FromBody] Reference reference)
         {
             var userId = _userManager.GetUserId(User);
