@@ -38,15 +38,11 @@ export default defineConfig({
     plugins: [plugin()],
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
+            "@": path.resolve(__dirname, "./src"),
         }
     },
     server: {
         proxy: {
-            '^/weatherforecast': {
-                target,
-                secure: false
-            },
             '^/pingauth': {
                 target,
                 secure: false

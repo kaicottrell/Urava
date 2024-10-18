@@ -4,8 +4,10 @@ import Home from './Pages/Home.tsx';
 import Login from './Pages/Identity/Login.tsx';
 import Register from './Pages/Identity/Register.tsx';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { ToastProvider } from './Context/ToastContext.tsx';
+import './index.css'; // Tailwind CSS file
+import './styles/globals.css';
 
 
 function App() {

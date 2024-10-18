@@ -1,12 +1,18 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import Spinner from 'react-bootstrap/Spinner';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const UserContext = createContext({});
 
 interface User {
     email: string;
 }
+
+const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+};
 
 function AuthorizeView(props: { children: React.ReactNode }) {
     const [authorized, setAuthorized] = useState<boolean>(false);
@@ -70,7 +76,14 @@ function AuthorizeView(props: { children: React.ReactNode }) {
     if (loading) {
         return (
             <>
-                <Spinner animation="grow" variant="secondary" className="fixed-center" />
+                <ClipLoader
+                    color={"#ffasdf"}
+                    loading={loading}
+                    cssOverride={override}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
             </>
         );
     } else {

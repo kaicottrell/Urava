@@ -1,11 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container } from "react-bootstrap";
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import { useToast } from '../../Context/ToastContext';
 import { toast } from "react-toastify";
 
@@ -41,13 +35,8 @@ function Login() {
         } else {
             // clear error message
             setError("");
-            // post data to the /register api
-
-            var loginurl = "";
-            if (rememberme == true)
-                loginurl = "/login?useCookies=true";
-            else
-                loginurl = "/login?useSessionCookies=true";
+            // post data to the /login api
+            const loginurl = rememberme ? "/login?useCookies=true" : "/login?useSessionCookies=true";
 
             fetch(loginurl, {
                 method: "POST",
@@ -59,19 +48,14 @@ function Login() {
                     password: password,
                 }),
             })
-
                 .then((data) => {
                     // handle success or error from the server
-                    console.log(data);
                     if (data.ok) {
                         triggerToast("Login Successful");
                         navigate("/");
-                    }
-                    else {
+                    } else {
                         toast.error("Email or password failed");
                     }
-                       
-
                 })
                 .catch((error) => {
                     // handle network error
@@ -81,76 +65,61 @@ function Login() {
         }
     };
 
-  
-
     return (
         <>
-            <Row className="d-flex justify-content-center mt-2">
-                <Col className="text-center" xs="auto" >
-                    <Image className="w-25" src="/assets/images/LogoV2.png" alt="Logo" />
-                </Col>
-            </Row>
+            <div className="flex justify-center mt-2">
+                <img className="md:w-1/5 w-1/2" src="/assets/images/LogoV2.png" alt="Logo" />
+            </div>
 
-            <Row className="d-flex justify-content-center">
-                <Col xs={12} md={6} lg={4} xl={3}>
-                    <Container className="w-100 containerbox bg-primary">
-                        <h3 className="text-center">Login</h3>
-                        <Form onSubmit={handleSubmit}>
-                            <Row>
-                                <Col xs={12} sm={6} md={12}>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label className="font-md fw-bold" htmlFor="email">Email:</Form.Label>
-                                        <Form.Control
-                                            className="form-control-default"
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            value={email}
-                                            onChange={handleChange}
-                                        />
-                                    </Form.Group>
-                                </Col>
+            <div className="flex justify-center">
+                <div className="w-full w-full max-w-sm lg:max-w-lg p-6 bg-white rounded-lg shadow-lg">
+                    <h3 className="text-center text-xl font-bold">Login</h3>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-4">
+                            <label className="block text-md font-bold mb-2" htmlFor="email">Email:</label>
+                            <input
+                                className="w-full p-2 border border-gray-300 rounded"
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={email}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                                <Col xs={12} sm={6} md={12}>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label className="font-md fw-bold" htmlFor="password">Password:</Form.Label>
-                                        <Form.Control
-                                            className="form-control-default"
-                                            type="password"
-                                            id="password"
-                                            name="password"
-                                            value={password}
-                                            onChange={handleChange}
-                                        />
-                                    </Form.Group>
-                                </Col>
-                            </Row>
+                        <div className="mb-4">
+                            <label className="block text-md font-bold mb-2" htmlFor="password">Password:</label>
+                            <input
+                                className="w-full p-2 border border-gray-300 rounded"
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={password}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                            <Form.Group className="mb-3 custom-checkbox d-flex justify-content-center align-items-center" >
-                                <Form.Check
-                                    className="me-2"
-                                    type="checkbox"
-                                    id="rememberme"
-                                    name="rememberme"
-                                    checked={rememberme}
-                                    onChange={handleChange}
-                                />
-                                <span id="remember-me-default">Remember Me</span>
-                            </Form.Group>
+                        <div className="flex items-center mb-4">
+                            <input
+                                className="mr-2"
+                                type="checkbox"
+                                id="rememberme"
+                                name="rememberme"
+                                checked={rememberme}
+                                onChange={handleChange}
+                            />
+                            <label htmlFor="rememberme" className="text-md">Remember Me</label>
+                        </div>
 
-                            <div className="text-center">
-                                <Button className="me-2 font-md" variant="secondary" type="submit">Login</Button>
-                                <Button className="ms-2 font-md" variant="outline-dark" type="button" onClick={handleRegisterClick}>New Here? Register</Button>
-                            </div>
-                           
-                        </Form>
-                        {error && <p className="error text-center text-danger mt-3 font-sm">{error}</p>}
-                    </Container>
-                </Col>
-
-            </Row>
+                        <div className="flex justify-center space-x-2">
+                            <button className="bg-primary text-white py-2 px-4 rounded" type="submit">Login</button>
+                            <button className="border bg-secondary border-gray-600 text-gray-600 py-2 px-4 rounded" type="button" onClick={handleRegisterClick}>New Here? Register</button>
+                        </div>
+                    </form>
+                    {error && <p className="text-center text-red-500 mt-3">{error}</p>}
+                </div>
+            </div>
         </>
-
     );
 }
 
