@@ -7,15 +7,14 @@ function Home() {
     return (
         <AuthorizedView>
             <div className="flex h-screen">
-                <div className="w-1/4 md:w-1/5 bg-primary">
+                <div className="w-1/4 md:w-1/5">
                     <SideNavbar />
                 </div>
-                <div className="flex-1 p-4">
-                    {/* Main content goes here */}
+                <div className="p-4 flex-1">
                     test
+                    <ProfileActions />
                 </div>
             </div>
-            <ProfileActions />
         </AuthorizedView>
     );
 }

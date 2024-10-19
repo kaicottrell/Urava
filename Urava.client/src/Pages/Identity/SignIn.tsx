@@ -2,12 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from '../../Context/ToastContext';
 import { toast } from "react-toastify";
-
-function Login() {
+import { EyeOpenIcon, EyeClosedIcon } from "@radix-ui/react-icons";
+function SignIn() {
     // state variables for email and passwords
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [rememberme, setRememberme] = useState<boolean>(false);
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
+
     // state variable for error messages
     const [error, setError] = useState<string>("");
     const navigate = useNavigate();
@@ -65,10 +68,22 @@ function Login() {
         }
     };
 
+    const toggleSeePassword = () => {
+        setShowPassword(!showPassword);
+    }
+
+    const handlePasswordFocus = () => {
+        setIsPasswordFocused(true);
+    }
+    const handlePasswordBlur = () => {
+        setIsPasswordFocused(false);
+    }
+
+
     return (
         <>
-            <div className="flex justify-center mt-2">
-                <img className="md:w-1/5 w-1/2" src="/assets/images/LogoV2.png" alt="Logo" />
+            <div className="flex justify-center">
+                <img className="md:w-1/5 lg:w-1/6 w-1/2" src="/assets/images/LogoV2.png" alt="Logo" />
             </div>
 
             <div className="flex justify-center">
@@ -89,19 +104,43 @@ function Login() {
 
                         <div className="mb-4">
                             <label className="block text-md font-bold mb-2" htmlFor="password">Password:</label>
-                            <input
-                                className="w-full p-2 border border-gray-300 rounded"
-                                type="password"
-                                id="password"
-                                name="password"
-                                value={password}
-                                onChange={handleChange}
-                            />
+                            <div className="relative">
+                                <input
+                                    className="w-full p-2 border border-gray-300 rounded"
+                                    type={showPassword ? "text" : "password"}
+                                    id="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={handleChange}
+                                    onBlur={handlePasswordBlur}
+                                    onFocus={handlePasswordFocus}
+                                />
+                                {
+                                    isPasswordFocused &&
+                                    (
+                                        <button
+                                            type="button"
+                                            onMouseDown={(e) => {
+                                            e.preventDefault();
+                                            toggleSeePassword();
+                                        }}
+                                           
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center ">
+                                            {showPassword ?
+                                                (<EyeClosedIcon />) : (<EyeOpenIcon />)
+                                            }
+                                        </button>
+                                    )
+
+                                }
+
+                            </div>
+
                         </div>
 
-                        <div className="flex items-center mb-4">
+                        <div className="flex justify-center mb-4">
                             <input
-                                className="mr-2"
+                                className="mr-2 "
                                 type="checkbox"
                                 id="rememberme"
                                 name="rememberme"
@@ -113,7 +152,9 @@ function Login() {
 
                         <div className="flex justify-center space-x-2">
                             <button className="bg-primary text-white py-2 px-4 rounded" type="submit">Login</button>
-                            <button className="border bg-secondary border-gray-600 text-gray-600 py-2 px-4 rounded" type="button" onClick={handleRegisterClick}>New Here? Register</button>
+                        </div>
+                        <div className="flex justify-center space-x-2 mt-3 ">
+                            <button className="border bg-secondary border-gray-600 text-gray-600 px-4 rounded" type="button" onClick={handleRegisterClick}>New Here? Register</button>
                         </div>
                     </form>
                     {error && <p className="text-center text-red-500 mt-3">{error}</p>}
@@ -123,4 +164,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default SignIn;

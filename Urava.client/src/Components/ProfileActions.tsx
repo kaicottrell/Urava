@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import LogoutLink from './Authorization/LogoutLink.tsx';
 import DefaultUserIcon from '/assets/images/DefaultUserIcon.png';
+import { Link } from 'react-router-dom';
 
 function ProfileActions() {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,7 @@ function ProfileActions() {
     };
 
     return (
-        <div className="relative inline-block text-left">
+        <div className="absolute right-3 top-3">
             <button
                 onClick={toggleDropdown}
                 className="flex items-center focus:outline-none"
@@ -31,21 +32,24 @@ function ProfileActions() {
             {isOpen && (
                 <div className="absolute right-0 z-10 mt-2 w-48 bg-white border border-gray-300 rounded shadow-lg">
                     <div className="py-1">
-                        <a
-                            href="#/settings"
+                        <Link to="/skills"
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
                             onClick={closeDropdown}
                         >
                             Settings
-                        </a>
+                        </Link>
+                        <hr className="my-1 border-gray-200" />
+                        <Link to="/interviewQuestions"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
+                            onClick={closeDropdown}
+                        >
+                            Interview Questions
+                        </Link>
                         <hr className="my-1 border-gray-200" />
                         <LogoutLink>
-                            <a
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
-                                onClick={closeDropdown}
-                            >
+                            <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" onClick={closeDropdown}>
                                 Logout
-                            </a>
+                            </div>
                         </LogoutLink>
                     </div>
                 </div>

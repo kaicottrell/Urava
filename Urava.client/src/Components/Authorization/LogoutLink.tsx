@@ -18,7 +18,7 @@ function LogoutLink(props: { children: React.ReactNode }) {
         })
             .then((data) => {
                 if (data.ok) {
-                    navigate("login");
+                    navigate("signIn");
                     triggerToast("You have been successfully logged out.", "success");
                 }
                 else { }
@@ -33,7 +33,7 @@ function LogoutLink(props: { children: React.ReactNode }) {
 
     return (
         <>
-            <a href="#" onClick={handleSubmit}>{props.children}</a>
+            <a onClick={handleSubmit}>{props.children}</a>
         </>
     );
 }

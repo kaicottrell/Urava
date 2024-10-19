@@ -42,6 +42,7 @@ export default defineConfig({
         }
     },
     server: {
+        historyApiFallback: true,
         proxy: {
             '^/pingauth': {
                 target,

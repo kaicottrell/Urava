@@ -16,7 +16,7 @@ function Register() {
     const [error, setError] = useState("");
 
     const handleLoginClick = () => {
-        navigate("/login");
+        navigate("/signIn");
     };
 
     // Handle change events for input fields
@@ -63,7 +63,7 @@ function Register() {
                 .then((data) => {
                     if (data.ok) {
                         triggerToast("Registration Successful, Please Log In");
-                        navigate("/login");
+                        navigate("/signIn");
                     } else {
                         toast.error('Error registering');
                         setError("Error registering.");
@@ -78,14 +78,14 @@ function Register() {
 
     return (
         <>
-            <div className="flex justify-center mt-2">
-                <img className="md:w-1/5 w-1/2" src="/assets/images/LogoV2.png" alt="Logo" />
+            <div className="flex justify-center">
+                <img className="md:w-1/5 lg:w-1/6 w-1/2" src="/assets/images/LogoV2.png" alt="Logo" />
             </div>
 
             <div className="flex justify-center">
                 <div className="w-full max-w-sm lg:max-w-lg bg-white p-6 rounded-lg shadow-lg">
                     <h3 className="text-center text-xl font-bold">Register</h3>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4 mt-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block mb-1 font-medium" htmlFor="firstName">First Name:</label>
@@ -147,7 +147,9 @@ function Register() {
 
                         <div className="flex justify-center space-x-2">
                             <button className="bg-primary text-white py-2 px-4 rounded" type="submit">Register</button>
-                            <button className="border bg-secondary border-gray-600 text-gray-600 py-2 px-4 rounded" onClick={handleLoginClick}>Go to Login</button>
+                        </div>
+                        <div className="flex justify-center space-x-2">
+                            <button className="border bg-secondary border-gray-600 text-gray-600  px-4 rounded" onClick={handleLoginClick}>Go to Login</button>
                         </div>
                     </form>
 
