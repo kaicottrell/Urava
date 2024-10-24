@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
+import { ObjectId } from "bson"; // Import ObjectId from bson
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -7,57 +8,78 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from "@/components/ui/label"
 import { Edit, Plus, ChevronUp, ChevronDown, X } from "lucide-react"
 
-type Question = {
-    id: number
-    question: string
-    answer: string
-    askedCount: number
-}
-
-const initialQuestions: Question[] = [
-    {
-        id: 1,
-        question: "What is React and how does it differ from other JavaScript frameworks? Can you explain its core principles?",
-        answer: "React is a JavaScript library for building user interfaces, particularly single-page applications. Unlike full frameworks, React focuses on the view layer and can be easily integrated with other libraries. Its core principles include component-based architecture, declarative programming, and the virtual DOM for efficient updates.",
-        askedCount: 42
-    },
-    {
-        id: 2,
-        question: "What are React Hooks and how do they improve functional components? Can you name and explain some commonly used hooks?",
-        answer: "React Hooks are functions that let you use state and other React features in functional components. They simplify code, make it easier to reuse stateful logic, and eliminate the need for class components in many cases. Common hooks include useState for state management, useEffect for side effects, useContext for context consumption, and useRef for mutable references.",
-        askedCount: 28
-    },
-    // ... (other questions remain unchanged)
-]
 
 export default function Component() {
-    const [questions, setQuestions] = useState(initialQuestions)
+    const [questions, setQuestions] = useState<QuestionAnswer>([])
     const [newQuestion, setNewQuestion] = useState({ question: "", answer: "" })
     const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-    const incrementCount = (id: number) => {
-        setQuestions(questions.map(q =>
-            q.id === id ? { ...q, askedCount: q.askedCount + 1 } : q
-        ))
+    interface QuestionAnswer {
+        id: bson,
+        question: string,
+        answer: string,
+        frequencyCount: number
     }
 
-    const decrementCount = (id: number) => {
+    useEffect(() => {
+        getInitialQuestions();
+    }, []);
+
+    const incrementCount = (id: bson) => {
         setQuestions(questions.map(q =>
-            q.id === id ? { ...q, askedCount: Math.max(0, q.askedCount - 1) } : q
+            q.id === id ? { ...q, frequencyCount: q.frequencyCount + 1 } : q
         ))
+        //TODO: Update database
     }
 
+    const decrementCount = (id: bson) => {
+        setQuestions(questions.map(q =>
+            q.id === id ? { ...q, frequencyCount: Math.max(0, q.frequencyCount - 1) } : q
+        ))
+        //TODO: update database
+    }
+    const getInitialQuestions = () => {
+        fetch("/api/InterviewQuestionAnswer", {
+            "method": "GET"
+        })
+        .then(response => response.json())
+        .then(data => {
+            setQuestions(data);
+        })
+        .catch(error => {
+            console.error("Unexpected error while loading the initial questions", error)
+        });
+    }
     const addQuestion = () => {
+        // fetch ajax request to the interviewquestionanswer controller api
         if (newQuestion.question && newQuestion.answer) {
-            setQuestions([...questions, {
-                id: questions.length + 1,
-                ...newQuestion,
-                askedCount: 0
-            }])
-            setNewQuestion({ question: "", answer: "" })
-            setIsDialogOpen(false)
+            fetch("/api/InterviewQuestionAnswer", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    question: newQuestion.question,
+                    answer: newQuestion.answer,
+                    frequencyCount: 0
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                setQuestions([...questions, {
+                    id: data.id, // Ensure this matches the property name returned by your API
+                    ...newQuestion,
+                    frequencyCount: 0
+                }])
+                setNewQuestion({ question: "", answer: "" })
+                setIsDialogOpen(false)
+            })
+            .catch(error => {
+                console.error("Unexpected error while adding a new question", error);
+            });
         }
     }
+
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -84,7 +106,7 @@ export default function Component() {
                             Add Question
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]" className="bg-secondary">
+                    <DialogContent className="sm:max-w-[425px] bg-secondary" >
                         <DialogHeader>
                             <DialogTitle>Add New Question</DialogTitle>
                         </DialogHeader>
@@ -127,7 +149,7 @@ export default function Component() {
                         </CardContent>
                         <CardFooter className="bg-secondary p-3 sm:p-4 flex justify-between items-center">
                             <div className="text-xs sm:text-sm font-medium">
-                                Asked {q.askedCount} times
+                                Asked {q.frequencyCount} times
                             </div>
                             <div className="flex flex-col">
                                 <Button

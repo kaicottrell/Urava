@@ -37,5 +37,13 @@ namespace Urava.Server.Controllers
             _referenceRepo.SaveChanges();
             return Ok();
         }
+        [HttpGet]
+        public IActionResult GetAllReferences()
+        {
+            var userId = _userManager.GetUserId(User);
+            var oUserId = new ObjectId(userId);
+            var references = _referenceRepo.GetAll(r => r.UserId == oUserId);
+            return Ok(references);
+        }
     }
 }

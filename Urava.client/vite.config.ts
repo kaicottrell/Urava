@@ -59,6 +59,14 @@ export default defineConfig({
             '^/logout': {
                 target,
                 secure: false
+            },
+            '^/api/reference': {
+                target,
+                secure: false
+            },
+            '^/api/InterviewQuestionAnswer': {
+                target,
+                secure: false
             }
 
         },

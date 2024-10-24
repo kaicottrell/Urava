@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDbGenericRepository.Attributes;
+using System.Text.Json.Serialization;
 
 namespace Urava.Server.Documents
 {

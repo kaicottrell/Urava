@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Urava.Server.Documents;
 using MongoDbGenericRepository.Attributes;
+using System.Linq.Expressions;
 namespace Urava.Server.Repository
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : Document
@@ -46,6 +47,12 @@ namespace Urava.Server.Repository
         {
             var all = await DbSet.FindAsync(Builders<TEntity>.Filter.Empty);
             return all.ToList();
+        }
+        public virtual IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+        {
+            var filter = Builders<TEntity>.Filter.Where(predicate);
+            var restrictedAllDocuments = DbSet.Find(filter).ToList();
+            return restrictedAllDocuments;
         }
 
         public virtual void Update(TEntity obj)

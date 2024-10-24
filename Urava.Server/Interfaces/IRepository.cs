@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 
@@ -10,6 +11,8 @@ namespace Urava.Server.Interfaces
         void Add(TEntity obj);
         Task<TEntity> GetById(ObjectId id);
         Task<IEnumerable<TEntity>> GetAll();
+        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
+
         void Update(TEntity obj);
         void Remove(ObjectId id);
         void SaveChanges();
